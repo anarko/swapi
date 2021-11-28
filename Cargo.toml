@@ -1,0 +1,22 @@
+[package]
+name = "swapi"
+version = "0.1.0"
+edition = "2021"
+autors = ["Juan Marcos Picard Smith <marcospicard at gmail>"]
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+warp = "0.3.2"
+serde = { version = "1.0", features = ["derive"] }
+tokio = { version = "1.14.0", features = ["macros"] }
+uuid = { version = "0.8", features = ["serde", "v4"] }
+parking_lot = "0.11.2"
+data-encoding = "2.3.2"
+ring = "0.16.20"
+crypto-rest-client = "0.7.8"
+hyper = "0.14.15"
+reqwest = { version = "0.11.6", features = ["json", "blocking", "cookies"] }
+chrono = "0.4"
+hmac = "0.9.0"
+sha2 = "0.8.1"
+json = "0.12.4"
