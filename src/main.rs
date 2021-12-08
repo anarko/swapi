@@ -103,6 +103,12 @@ async fn get_swap_price(
         let mut book_instr = String::new();
         let mut swap_side = String::new();
 
+        if pair_split.len() != 2 {
+            return Ok(warp::reply::json(
+                &ErrorResponse {msg: "El swap no puede estimarse, no se reconoce el par".to_string(),err_nro : 4}
+            ))
+        }
+
         // busco a que instrumento corresponde el swap y a que side tengo que ir
         for i in swapi.clone().instruments.as_array().iter(){
             for a in i.iter(){
