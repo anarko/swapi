@@ -71,8 +71,9 @@ async fn estimate_swap_price(
         }
 
         let book = okex::get_order_book(pair.clone()).await.unwrap();
+        if book.get("code").unwrap().as_str().unwrap() != "0" { return 0.0 }
 
-        for price in book.get("data").unwrap()[0][book_side].as_array().unwrap() {
+        for price in  book.get("data").unwrap()[0][book_side].as_array().unwrap() {
             cant_total += price[1].as_str().unwrap().parse::<f32>().unwrap_or(0.0);
             cant_por_precio +=  price[0].as_str().unwrap().parse::<f32>().unwrap()* price[1].as_str().unwrap().parse::<f32>().unwrap_or(0.0);
             if cant_total >= quantity {

@@ -45,20 +45,12 @@ pub async fn make_api_request(method : reqwest::Method, end_point : Option<Strin
 
     complete_url.push_str(&path);
 
-/*
-    println!("URL : {}", complete_url.as_str());
-    println!("Body : {}", request_body.as_str());
-*/
     let r  = client.request(method, complete_url.as_str())
         .headers(header_map)
         .body(request_body)
         .send()
         .await?;
-/*
-    let json = json::parse(&r.text().await?).unwrap();
-*/
     let json = serde_json::from_str(&r.text().await?).unwrap();
-    //let json = json!(&r.text().await?);
     Ok(json)
 }
 
